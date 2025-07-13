@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</title>
+  <style>
+    :root {
+      --main-blue: #1976d2;
+      --main-blue-dark: #1565c0;
+      --main-gray: #f4f6f8;
+      --main-white: #fff;
+      --main-border: #e0e0e0;
+      --main-radius: 14px;
+      --main-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      --main-font: 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
+      --error: #e53935;
+      --success: #388e3c;
+      --info: #0288d1;
+    }
+    html, body {
+      font-family: var(--main-font);
+      background: var(--main-gray);
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.1rem;
+      margin: 2rem 0 1.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      z-index: 10;
+      background: var(--main-white);
+      border: 1px solid var(--main-border);
+      border-radius: 6px;
+      padding: 0.4em 1em;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--main-blue);
+      box-shadow: var(--main-shadow);
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      padding: 0 1rem 2.5rem;
+    }
+    .card {
+      background: var(--main-white);
+      border-radius: var(--main-radius);
+      box-shadow: var(--main-shadow);
+      padding: 1.6rem 1.2rem 1.2rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      margin-bottom: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    .form-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    label {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+      position: relative;
+    }
+    .input-row input {
+      padding: 0.6rem;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 7px;
+      border: 1.5px solid var(--main-border);
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+      background: #f9f9fb;
+    }
+    .input-row input:focus {
+      border-color: var(--main-blue);
+      outline: none;
+    }
+    .input-row input.input-error {
+      border-color: var(--error);
+      background: #fff1f0;
+    }
+    .input-error-message {
+      color: var(--error);
+      font-size: 0.92em;
+      margin-top: 0.1em;
+      min-height: 1.2em;
+    }
+    .tip {
+      font-size: 0.92em;
+      color: #666;
+      margin: 0.25em 0 0.3em 0.2em;
+    }
+    button {
+      margin-top: 1.1rem;
+      padding: 0.7rem 1.4rem;
+      background-color: var(--main-blue);
+      color: var(--main-white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.07rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      box-shadow: 0 2px 6px rgba(25, 118, 210, 0.07);
+      margin-right: 0.5rem;
+    }
+    button:hover, .copy-btn:hover {
+      background-color: var(--main-blue-dark);
+      color: #fff;
+    }
+    .output-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      margin-top: 1.1em;
+      margin-bottom: 0.2em;
+    }
+    .output {
+      padding: 0.7em 1.1em;
+      background: #f1f1f1;
+      border-radius: 7px;
+      font-family: monospace;
+      font-size: 1.1em;
+      white-space: pre-wrap;
+      flex: 1;
+      word-break: break-all;
+      border: 1px solid #e0e0e0;
+      min-width: 0;
+    }
+    .output-label {
+      min-width: 4.5em;
+      font-weight: 500;
+      color: #555;
+      font-size: 0.98em;
+    }
+    .copy-btn {
+      font-size: 0.98em;
+      padding: 0.35em 0.8em;
+      cursor: pointer;
+      border: 1px solid var(--main-blue);
+      background: #fff;
+      border-radius: 5px;
+      color: var(--main-blue);
+      margin-left: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .copy-btn:active {
+      background: var(--main-blue);
+      color: #fff;
+    }
+    .color-preview {
+      margin-top: 1.2em;
+      margin-bottom: 0.3em;
+      height: 62px;
+      border-radius: 8px;
+      border: 1.5px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08em;
+      font-family: monospace;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #333;
+      background: #fafbfb;
+      position: relative;
+    }
+    .color-preview .color-label {
+      background: rgba(255,255,255,0.8);
+      padding: 0.1em 0.5em;
+      border-radius: 5px;
+      font-size: 0.98em;
+      margin-left: 0.5em;
+      color: #444;
+    }
+    .color-info {
+      font-size: 0.97em;
+      color: #555;
+      margin-top: 0.3em;
+      margin-bottom: 0.2em;
+      display: flex;
+      gap: 1.2em;
+      flex-wrap: wrap;
+    }
+    .download-btns {
+      margin-top: 1.2em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+    .download-btns button {
+      margin: 0;
+      font-size: 1em;
+      padding: 0.6em 1.1em;
+      background: #f3f7fa;
+      color: var(--main-blue);
+      border: 1.5px solid var(--main-blue);
+      border-radius: 7px;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .download-btns button:hover {
+      background: var(--main-blue);
+      color: #fff;
+    }
+    .cie-section {
+      margin-top: 2em;
+    }
+    .cie-canvas-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      margin-top: 1.2em;
+    }
+    canvas {
+      width: 100%;
+      max-width: 600px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      background: #fff;
+      display: block;
+      margin: auto;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 3.5em;
+      transform: translateX(-50%);
+      background: var(--main-blue);
+      color: #fff;
+      padding: 0.8em 1.6em;
+      border-radius: 8px;
+      font-size: 1.08em;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(25, 118, 210, 0.13);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .toast.toast-show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 0.1rem 2.5rem;
+      }
+      .card {
+        padding: 1.1rem 0.4rem 1rem;
+      }
+      .cie-canvas-wrap {
+        max-width: 100vw;
+      }
+      canvas {
+        max-width: 98vw;
+      }
+      .color-preview {
+        font-size: 0.97em;
+        height: 48px;
+      }
+      .output {
+        font-size: 1em;
+        padding: 0.5em 0.7em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="lang-switch" id="langBtn" aria-label="언어 전환">ENGLISH</button>
+  <h1 id="mainTitle">색좌표 변환기 <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</span></h1>
+  <div class="container">
+
+    <!-- xyY → XYZ -->
+    <div class="card" aria-labelledby="xyy2xyzTitle">
+      <h2 id="xyy2xyzTitle">xyY → XYZ 변환</h2>
+      <div class="tip">예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)</div>
+      <div class="form-group">
+        <div class="input-row">
+          <label for="x">x (0~1)
+            <span title="CIE 1931 색좌표계 x 값" aria-label="x 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="x" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3127" autocomplete="off" />
+          <div class="input-error-message" id="xError"></div>
+        </div>
+        <div class="input-row">
+          <label for="y">y (0~1)
+            <span title="CIE 1931 색좌표계 y 값" aria-label="y 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="y" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3290" autocomplete="off" />
+          <div class="input-error-message" id="yError"></div>
+        </div>
+        <div class="input-row">
+          <label for="Y">Y (휘도)
+            <span title="상대 휘도(밝기) 값" aria-label="휘도 설명">ⓘ</span>
+          </label>
+          <input type="number" id="Y" inputmode="decimal" step="0.01" min="0" value="100" autocomplete="off" />
+          <div class="input-error-message" id="YError"></div>
+        </div>
+      </div>
+      <button onclick="xyYtoXYZ()" id="xyy2xyzBtn">변환</button>
+      <div class="output-row">
+        <span class="output-label">XYZ</span>
+        <div class="output" id="xyzResult"></div>
+        <button class="copy-btn" onclick="copyText('xyzResult')">복사</button>
+      </div>
+      <div class="color-preview" id="colorPreview">
+        <span id="hexLabel1"></span>
+        <span class="color-label" id="colorName1"></span>
+      </div>
+      <div class="color-info" id="colorInfo1"></div>
+    </div>
+
+    <!-- XYZ → xyY & Lab & 이름 -->
+    <div class="card" aria-labelledby="xyz2othersTitle">
+      <h2 id="xyz2othersTitle">XYZ → xyY, Lab, 이름 변환</h2>
+      <div class="tip">예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)</div>
+      <div class="form-group">
+        <div class="input-row">
+          <label for="X">X
+            <span title="CIE 1931 XYZ 색좌표계 X" aria-label="X 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="X" inputmode="decimal" step="0.01" min="0" value="95.047" autocomplete="off" />
+          <div class="input-error-message" id="XError"></div>
+        </div>
+        <div class="input-row">
+          <label for="Y2">Y
+            <span title="CIE 1931 XYZ 색좌표계 Y" aria-label="Y 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="Y2" inputmode="decimal" step="0.01" min="0" value="100.000" autocomplete="off" />
+          <div class="input-error-message" id="Y2Error"></div>
+        </div>
+        <div class="input-row">
+          <label for="Z">Z
+            <span title="CIE 1931 XYZ 색좌표계 Z" aria-label="Z 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="Z" inputmode="decimal" step="0.01" min="0" value="108.883" autocomplete="off" />
+          <div class="input-error-message" id="ZError"></div>
+        </div>
+      </div>
+      <button onclick="XYZtoxyY()" id="xyz2othersBtn">변환</button>
+      <div class="output-row">
+        <span class="output-label">xyY</span>
+        <div class="output" id="xyyResult"></div>
+        <button class="copy-btn" onclick="copyText('xyyResult')">복사</button>
+      </div>
+      <div class="output-row">
+        <span class="output-label">Lab</span>
+        <div class="output" id="labResult"></div>
+        <button class="copy-btn" onclick="copyText('labResult')">복사</button>
+      </div>
+      <div class="output-row">
+        <span class="output-label">이름</span>
+        <div class="output" id="colorNameResult"></div>
+      </div>
+      <div class="color-preview" id="colorPreview2">
+        <span id="hexLabel2"></span>
+        <span class="color-label" id="colorName2"></span>
+      </div>
+      <div class="color-info" id="colorInfo2"></div>
+      <div class="download-btns">
+        <button onclick="downloadCSV()" title="변환된 XYZ 값을 CSV 파일로 저장합니다">CSV 다운로드</button>
+        <button onclick="downloadCanvas()" title="CIE 색도도 이미지를 PNG로 저장합니다">CIE 색도도 이미지 저장</button>
+      </div>
+    </div>
+
+    <!-- Lab → XYZ -->
+    <div class="card" aria-labelledby="lab2xyzTitle">
+      <h2 id="lab2xyzTitle">Lab → XYZ (역변환)</h2>
+      <div class="tip">예시: L=100, a=0, b=0 (D65 백색점)</div>
+      <div class="form-group">
+        <div class="input-row">
+          <label for="L">L (0~100)
+            <span title="Lab 색공간 밝기" aria-label="L 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="L" inputmode="decimal" step="0.01" min="0" max="100" value="100" autocomplete="off" />
+          <div class="input-error-message" id="LError"></div>
+        </div>
+        <div class="input-row">
+          <label for="a">a (-128~127)
+            <span title="Lab 색공간 녹-적 축" aria-label="a 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="a" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
+          <div class="input-error-message" id="aError"></div>
+        </div>
+        <div class="input-row">
+          <label for="b">b (-128~127)
+            <span title="Lab 색공간 청-황 축" aria-label="b 값 설명">ⓘ</span>
+          </label>
+          <input type="number" id="b" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
+          <div class="input-error-message" id="bError"></div>
+        </div>
+      </div>
+      <button onclick="LabtoXYZ()" id="lab2xyzBtn">변환</button>
+      <div class="output-row">
+        <span class="output-label">XYZ</span>
+        <div class="output" id="lab2xyzResult"></div>
+        <button class="copy-btn" onclick="copyText('lab2xyzResult')">복사</button>
+      </div>
+      <div class="color-preview" id="colorPreview3">
+        <span id="hexLabel3"></span>
+        <span class="color-label" id="colorName3"></span>
+      </div>
+      <div class="color-info" id="colorInfo3"></div>
+    </div>
+
+    <!-- CIE 색도도 -->
+    <div class="card cie-section" aria-labelledby="cieTitle">
+      <h2 id="cieTitle">CIE 1931 색도도 시각화</h2>
+      <div class="cie-canvas-wrap">
+        <canvas id="cieCanvas" width="600" height="450" aria-label="CIE 1931 색도도"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 언어 지원
+    const LANGS = {
+      ko: {
+        mainTitle: '색좌표 변환기 <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</span>',
+        xyy2xyzTitle: 'xyY → XYZ 변환',
+        xyz2othersTitle: 'XYZ → xyY, Lab, 이름 변환',
+        lab2xyzTitle: 'Lab → XYZ (역변환)',
+        cieTitle: 'CIE 1931 색도도 시각화',
+        tip1: '예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)',
+        tip2: '예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)',
+        tip3: '예시: L=100, a=0, b=0 (D65 백색점)',
+        copy: '복사',
+        copySuccess: '복사되었습니다!',
+        copyFail: '복사 실패',
+        csv: 'CSV 다운로드',
+        img: 'CIE 색도도 이미지 저장',
+        error_required: '모든 값을 입력하세요.',
+        error_range: '입력값 범위가 올바르지 않습니다.',
+        error_y0: 'y 값이 0이면 변환할 수 없습니다.',
+        error_xyz0: 'X+Y+Z가 0이면 변환할 수 없습니다.',
+        error_lab: 'Lab 값이 올바르지 않습니다.',
+        color: '색상',
+        name: '이름',
+        hsl: 'HSL',
+        hsv: 'HSV',
+        hex: 'HEX',
+        nearest: '가장 가까운 색 이름',
+        download_csv_tip: '변환된 XYZ 값을 CSV 파일로 저장합니다',
+        download_img_tip: 'CIE 색도도 이미지를 PNG로 저장합니다',
+        langBtn: 'ENGLISH'
+      },
+      en: {
+        mainTitle: 'Color Coordinate Converter <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + Name + Copy</span>',
+        xyy2xyzTitle: 'xyY → XYZ Conversion',
+        xyz2othersTitle: 'XYZ → xyY, Lab, Name Conversion',
+        lab2xyzTitle: 'Lab → XYZ (Reverse)',
+        cieTitle: 'CIE 1931 Chromaticity Diagram',
+        tip1: 'Example: x=0.3127, y=0.3290, Y=100 (D65 white point)',
+        tip2: 'Example: X=95.047, Y=100.000, Z=108.883 (D65 white point)',
+        tip3: 'Example: L=100, a=0, b=0 (D65 white point)',
+        copy: 'Copy',
+        copySuccess: 'Copied!',
+        copyFail: 'Copy failed',
+        csv: 'Download CSV',
+        img: 'Save CIE Diagram Image',
+        error_required: 'Please enter all values.',
+        error_range: 'Input out of range.',
+        error_y0: 'Cannot convert if y=0.',
+        error_xyz0: 'Cannot convert if X+Y+Z=0.',
+        error_lab: 'Invalid Lab value.',
+        color: 'Color',
+        name: 'Name',
+        hsl: 'HSL',
+        hsv: 'HSV',
+        hex: 'HEX',
+        nearest: 'Nearest color name',
+        download_csv_tip: 'Save converted XYZ as CSV file',
+        download_img_tip: 'Save CIE diagram as PNG image',
+        langBtn: '한국어'
+      }
+    };
+    let currentLang = 'ko';
+    function setLang(lang) {
+      currentLang = lang;
+      const L = LANGS[lang];
+      document.getElementById('mainTitle').innerHTML = L.mainTitle;
+      document.getElementById('xyy2xyzTitle').textContent = L.xyy2xyzTitle;
+      document.getElementById('xyz2othersTitle').textContent = L.xyz2othersTitle;
+      document.getElementById('lab2xyzTitle').textContent = L.lab2xyzTitle;
+      document.getElementById('cieTitle').textContent = L.cieTitle;
+      document.querySelectorAll('.tip')[0].textContent = L.tip1;
+      document.querySelectorAll('.tip')[1].textContent = L.tip2;
+      document.querySelectorAll('.tip')[2].textContent = L.tip3;
+      document.getElementById('langBtn').textContent = L.langBtn;
+      document.querySelectorAll('.copy-btn').forEach(btn => btn.textContent = L.copy);
+      document.querySelectorAll('.download-btns button')[0].title = L.download_csv_tip;
+      document.querySelectorAll('.download-btns button')[1].title = L.download_img_tip;
+    }
+    document.getElementById('langBtn').onclick = function() {
+      setLang(currentLang === 'ko' ? 'en' : 'ko');
+    };
+
+    // 실시간 입력값 유효성 검사
+    function checkInput(id, min, max, required=true) {
+      const el = document.getElementById(id);
+      const val = el.value.trim();
+      const errEl = document.getElementById(id + 'Error');
+      el.classList.remove('input-error');
+      errEl.textContent = '';
+      if (required && val === '') {
+        el.classList.add('input-error');
+        errEl.textContent = LANGS[currentLang].error_required;
+        return false;
+      }
+      if (val !== '' && (parseFloat(val) < min || parseFloat(val) > max)) {
+        el.classList.add('input-error');
+        errEl.textContent = LANGS[currentLang].error_range;
+        return false;
+      }
+      return true;
+    }
+    // xyY → XYZ
+    function xyYtoXYZ() {
+      let ok = true;
+      ok &= checkInput('x', 0, 1);
+      ok &= checkInput('y', 0, 1);
+      ok &= checkInput('Y', 0, 1e6);
+      if (!ok) return;
+      const x = parseFloat(document.getElementById('x').value);
+      const y = parseFloat(document.getElementById('y').value);
+      const Y = parseFloat(document.getElementById('Y').value);
+      if (y === 0) {
+        showError('yError', LANGS[currentLang].error_y0);
+        return;
+      }
+      const X = (x * Y) / y;
+      const Z = ((1 - x - y) * Y) / y;
+      document.getElementById('xyzResult').innerText = `X: ${X.toFixed(4)}, Y: ${Y.toFixed(4)}, Z: ${Z.toFixed(4)}`;
+      showColorPreview(X, Y, Z, 'colorPreview', 'colorInfo1', 'hexLabel1', 'colorName1');
+      lastXYZ = { X, Y, Z };
+      lastxy = { x, y };
+      drawCIE1931();
+    }
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      document.getElementById(id.replace('Error','')).classList.add('input-error');
+    }
+    // XYZ → xyY, Lab, 이름
+    function XYZtoxyY() {
+      let ok = true;
+      ok &= checkInput('X', 0, 1e6);
+      ok &= checkInput('Y2', 0, 1e6);
+      ok &= checkInput('Z', 0, 1e6);
+      if (!ok) return;
+      const X = parseFloat(document.getElementById('X').value);
+      const Y = parseFloat(document.getElementById('Y2').value);
+      const Z = parseFloat(document.getElementById('Z').value);
+      const total = X + Y + Z;
+      if (total === 0) {
+        showError('XError', LANGS[currentLang].error_xyz0);
+        return;
+      }
+      const x = X / total;
+      const y = Y / total;
+      document.getElementById('xyyResult').innerText = `x: ${x.toFixed(4)}, y: ${y.toFixed(4)}, Y: ${Y.toFixed(4)}`;
+      const lab = XYZtoLab(X, Y, Z);
+      document.getElementById('labResult').innerText = `L: ${lab.L.toFixed(2)}, a: ${lab.a.toFixed(2)}, b: ${lab.b.toFixed(2)}`;
+      showColorPreview(X, Y, Z, 'colorPreview2', 'colorInfo2', 'hexLabel2', 'colorName2');
+      const name = getNearestColorName(...xyzToSRGB(X, Y, Z));
+      document.getElementById('colorNameResult').innerText = `${LANGS[currentLang].nearest}: ${name}`;
+      lastXYZ = { X, Y, Z };
+      lastxy = { x, y };
+      drawCIE1931();
+    }
+    // Lab → XYZ 역변환
+    function LabtoXYZ() {
+      let ok = true;
+      ok &= checkInput('L', 0, 100);
+      ok &= checkInput('a', -128, 127);
+      ok &= checkInput('b', -128, 127);
+      if (!ok) return;
+      const L = parseFloat(document.getElementById('L').value);
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const ref_X = 95.047, ref_Y = 100.000, ref_Z = 108.883;
+      let y = (L + 16) / 116;
+      let x = a / 500 + y;
+      let z = y - b / 200;
+      const cube = v => v ** 3;
+      const inverseCube = v => (v > 0.2068966) ? cube(v) : (v - 16/116)/7.787;
+      x = inverseCube(x) * ref_X;
+      y = inverseCube(y) * ref_Y;
+      z = inverseCube(z) * ref_Z;
+      document.getElementById('lab2xyzResult').innerText = `X: ${x.toFixed(4)}, Y: ${y.toFixed(4)}, Z: ${z.toFixed(4)}`;
+      showColorPreview(x, y, z, 'colorPreview3', 'colorInfo3', 'hexLabel3', 'colorName3');
+      lastXYZ = { X: x, Y: y, Z: z };
+      lastxy = xyzToxy(x, y, z);
+      drawCIE1931();
+    }
+    // XYZ → Lab 변환
+    function XYZtoLab(X, Y, Z) {
+      const ref_X = 95.047, ref_Y = 100.000, ref_Z = 108.883;
+      let x = X / ref_X, y = Y / ref_Y, z = Z / ref_Z;
+      const f = v => v > 0.008856 ? Math.cbrt(v) : (7.787 * v + 16 / 116);
+      x = f(x); y = f(y); z = f(z);
+      return { L: (116 * y) - 16, a: 500 * (x - y), b: 200 * (y - z) };
+    }
+    // XYZ → RGB 선형 변환
+    function XYZtoRGB_Linear(X, Y, Z) {
+      let r = 3.2406*X - 1.5372*Y - 0.4986*Z;
+      let g = -0.9689*X + 1.8758*Y + 0.0415*Z;
+      let b = 0.0557*X - 0.2040*Y + 1.0570*Z;
+      return { r, g, b };
+    }
+    // 선형 RGB → sRGB 감마 보정
+    function linearToSRGB(value) {
+      return value <= 0.0031308 ? 12.92 * value : 1.055 * Math.pow(value, 1/2.4) - 0.055;
+    }
+    // XYZ → sRGB 0~255 (감마보정)
+    function xyzToSRGB(X, Y, Z) {
+      const rgbLinear = XYZtoRGB_Linear(X/100, Y/100, Z/100);
+      let [r, g, b] = [rgbLinear.r, rgbLinear.g, rgbLinear.b].map(v => Math.min(1, Math.max(0, v)));
+      return [
+        Math.round(linearToSRGB(r)*255),
+        Math.round(linearToSRGB(g)*255),
+        Math.round(linearToSRGB(b)*255),
+      ];
+    }
+    // sRGB → HEX
+    function rgbToHex(r, g, b) {
+      return "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+    }
+    // sRGB → HSL 변환
+    function RGBtoHSL(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r,g,b), min = Math.min(r,g,b);
+      let h=0,s=0,l=(max+min)/2;
+      if(max!==min){
+        const d = max-min;
+        s = l>0.5 ? d/(2-max-min) : d/(max+min);
+        switch(max){
+          case r: h=(g-b)/d+(g<b?6:0); break;
+          case g: h=(b-r)/d+2; break;
+          case b: h=(r-g)/d+4; break;
+        }
+        h /=6;
+      }
+      return { h: Math.round(h*360), s: Math.round(s*100), l: Math.round(l*100) };
+    }
+    // sRGB → HSV 변환
+    function RGBtoHSV(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r,g,b), min = Math.min(r,g,b);
+      const d = max-min;
+      let h=0, s= max===0?0:d/max, v=max;
+      if(max!==min){
+        switch(max){
+          case r: h=(g-b)/d+(g<b?6:0); break;
+          case g: h=(b-r)/d+2; break;
+          case b: h=(r-g)/d+4; break;
+        }
+        h /=6;
+      }
+      return { h: Math.round(h*360), s: Math.round(s*100), v: Math.round(v*100) };
+    }
+    // 컬러 미리보기 + HSL, HSV + HEX + 색상 이름 표시
+    function showColorPreview(X, Y, Z, elementId, infoId, hexId, nameId) {
+      const rgb = xyzToSRGB(X, Y, Z);
+      const div = document.getElementById(elementId);
+      div.style.backgroundColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+      const hex = rgbToHex(...rgb);
+      const hsl = RGBtoHSL(...rgb);
+      const hsv = RGBtoHSV(...rgb);
+      const name = getNearestColorName(...rgb);
+      document.getElementById(hexId).textContent = `${LANGS[currentLang].hex}: ${hex}`;
+      document.getElementById(nameId).textContent = name;
+      document.getElementById(infoId).innerHTML = `
+        <span>${LANGS[currentLang].hsl}: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</span>
+        <span>${LANGS[currentLang].hsv}: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</span>
+      `;
+    }
+    // xy 계산 (XYZ → xy)
+    function xyzToxy(X, Y, Z) {
+      const sum = X + Y + Z;
+      return sum === 0 ? {x: 0, y: 0} : { x: X / sum, y: Y / sum };
+    }
+    // CSV 다운로드
+    function downloadCSV() {
+      const { X, Y, Z } = lastXYZ;
+      const csv = `X,Y,Z\n${X.toFixed(4)},${Y.toFixed(4)},${Z.toFixed(4)}`;
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'color_data.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(LANGS[currentLang].copySuccess + ' (CSV)');
+    }
+    // 캔버스 다운로드
+    function downloadCanvas() {
+      const canvas = document.getElementById('cieCanvas');
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'cie1931.png';
+      link.click();
+      showToast(LANGS[currentLang].copySuccess + ' (PNG)');
+    }
+    // 복사 함수
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(LANGS[currentLang].copySuccess);
+      }).catch(() => {
+        showToast(LANGS[currentLang].copyFail, true);
+      });
+    }
+    // 토스트 알림
+    function showToast(msg, error=false) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.background = error ? '#e53935' : 'var(--main-blue)';
+      toast.classList.add('toast-show');
+      setTimeout(() => toast.classList.remove('toast-show'), 1300);
+    }
+    // CIE 1931 색도도 그리기 및 마커 표시
+    function drawCIE1931() {
+      const canvas = document.getElementById('cieCanvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = 'https://upload.wikimedia.org/wikipedia/commons/3/3b/CIE1931xy_blank.svg';
+      img.onload = () => {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        drawMarker(ctx);
+      };
+    }
+    // 마커 그리기
+    function drawMarker(ctx) {
+      const canvas = ctx.canvas;
+      const { x, y } = lastxy;
+      const px = x * canvas.width;
+      const py = (1 - y) * canvas.height;
+      ctx.beginPath();
+      ctx.arc(px, py, 8, 0, 2 * Math.PI);
+      ctx.fillStyle = '#e53935';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#fff';
+      ctx.stroke();
+    }
+    // 가장 가까운 CSS 색상 이름 찾기 (RGB)
+    const cssColors = {
+      'black':[0,0,0], 'white':[255,255,255], 'red':[255,0,0], 'lime':[0,255,0],
+      'blue':[0,0,255], 'yellow':[255,255,0], 'cyan':[0,255,255], 'magenta':[255,0,255],
+      'silver':[192,192,192], 'gray':[128,128,128], 'maroon':[128,0,0], 'olive':[128,128,0],
+      'green':[0,128,0], 'purple':[128,0,128], 'teal':[0,128,128], 'navy':[0,0,128]
+    };
+    function getNearestColorName(r, g, b) {
+      let minDist = Infinity, closest = 'unknown';
+      for (const [name, rgb] of Object.entries(cssColors)) {
+        const dist = (r - rgb[0])**2 + (g - rgb[1])**2 + (b - rgb[2])**2;
+        if(dist < minDist){
+          minDist = dist;
+          closest = name;
+        }
+      }
+      return closest;
+    }
+    // 상태 저장
+    let lastXYZ = { X: 95.047, Y: 100.000, Z: 108.883 };
+    let lastxy = { x: 0.3127, y: 0.3290 };
+    // 실시간 입력 이벤트 바인딩
+    ['x','y','Y','X','Y2','Z','L','a','b'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        checkInput(id,
+          id==='x'||id==='y'?0:id==='L'?0:id==='a'||id==='b'?-128:0,
+          id==='x'||id==='y'?1:id==='L'?100:id==='a'||id==='b'?127:1e6
+        );
+      });
+    });
+    // 언어 초기화
+    setLang('ko');
+    // 초기 색상 미리보기/마커
+    window.onload = function() {
+      xyYtoXYZ();
+      XYZtoxyY();
+      LabtoXYZ();
+      drawCIE1931();
+    };
+  </script>
+</body>
+</html>
