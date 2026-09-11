@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
+    <link>https://color-coordinate-converter.enjoy-onepage.com/</link>
+    <description>색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.</description>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 12 Sep 2026 03:00:00 +0900</lastBuildDate>
+    <atom:link href="https://color-coordinate-converter.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/</guid>
+      <description>색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>서비스 소개 및 산출 기준 | 색좌표 변환기 (xyY · Lab · RGB)</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/about.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/about.html</guid>
+      <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV의 서비스 소개, 공식 법령 산출 수식 및 데이터 처리 원칙 안내입니다.</description>
+      <pubDate>Sat, 12 Sep 2026 01:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>개인정보처리방침 | 색좌표 변환기 (xyY · Lab · RGB)</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/privacy.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/privacy.html</guid>
+      <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV의 개인정보 보호 정책, 쿠키 사용 및 브라우저 로컬 데이터 보안 원칙입니다.</description>
+      <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>CIE 1931 색도도와 색좌표(x, y)의 과학적 원리 | 색좌표 변환기 (xyY · Lab · RGB)</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/cie-color-space-guide.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/cie-color-space-guide.html</guid>
+      <description>인간의 시각 세포 반응을 기반으로 정의된 삼자극치 XYZ와 색도 좌표의 수학적 배경을 해설합니다.</description>
+      <pubDate>Sat, 12 Sep 2026 02:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>색상코드 완벽 해결 실무 가이드 및 핵심 요령 | 색좌표 변환기</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</guid>
+      <description>색상코드에 관한 법령 및 공식 산정 기준은 공공기관 훈령과 최신 개정 규정에 따르며, 개별 상황에 따라 적용 요율과 한도가 달라질 수 ...</description>
+      <pubDate>Sat, 12 Sep 2026 02:15:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>색상코드 기준 주의사항 및 2026년 최신 개정 기준 | 색좌표 변환기</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/guide2.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide2.html</guid>
+      <description>색상코드 기준 관련 분쟁 예방을 위해서는 서면 합의서 및 공식 명세서를 보관하고, 모의 계산기를 통해 예상 결과를 교차 검증하는 절차가...</description>
+      <pubDate>Sat, 12 Sep 2026 02:30:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>sRGB와 CIELAB의 차이점 및 산업별 활용 사례 | 색좌표 변환기 (xyY · Lab · RGB)</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/srgb-vs-cielab-difference.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/srgb-vs-cielab-difference.html</guid>
+      <description>기기 종속적인 RGB 색공간과 기기 독립적인 균등 색공간 Lab의 변환 필요성을 알아봅니다.</description>
+      <pubDate>Sat, 12 Sep 2026 02:45:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>
