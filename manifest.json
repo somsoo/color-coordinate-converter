@@ -1,0 +1,15 @@
+{
+  "name": "색좌표 변환기 | HEX RGB HSL CMYK",
+  "short_name": "색좌표변환기",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
