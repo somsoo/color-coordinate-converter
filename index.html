@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -18,47 +18,40 @@
     }
   }
   </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
-
-  <!-- SEO 기본 메타태그 -->
-  <meta name="description" content="색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.">
-  <meta name="keywords" content="색좌표 변환, color converter, xyY, XYZ, Lab, HSL, HSV, 색상 변환, 색상 이름, CIE, 색도도, 색상 도구, color tool">
-  <meta name="author" content="Enjoy Onepage">
-  <link rel="canonical" href="https://color-coordinate-converter.enjoy-onepage.com/">
-
-  <!-- Open Graph (SNS/카카오톡/페이스북/슬랙 등 공유용) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://color-coordinate-converter.enjoy-onepage.com">
-  <meta property="og:title" content="색좌표 변환기 | Color Coordinate Converter">
-  <meta property="og:description" content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원.">
-  <meta property="og:image" content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png">
-  <meta property="og:site_name" content="색좌표 변환기">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="색좌표 변환기 | Color Coordinate Converter">
-  <meta name="twitter:description" content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원.">
-  <meta name="twitter:image" content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png">
-  <meta name="twitter:url" content="https://color-coordinate-converter.enjoy-onepage.com">
-
-  <!-- Favicon & App Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
-  <link rel="shortcut icon" href="images/icon.png">
-  <link rel="apple-touch-icon" href="images/icon.png">
-
-  <!-- manifest (PWA 지원 시) -->
-  <!-- <link rel="manifest" href="manifest.json"> -->
-
-  <!-- 기타 SEO 개선 -->
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1976d2">
-  <meta name="msapplication-TileColor" content="#1976d2">
-  <meta name="msapplication-TileImage" content="images/icon.png">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
+<!-- SEO 기본 메타태그 -->
+<meta content="색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환." name="description"/>
+<meta content="색좌표 변환, color converter, xyY, XYZ, Lab, HSL, HSV, 색상 변환, 색상 이름, CIE, 색도도, 색상 도구, color tool" name="keywords"/>
+<meta content="Enjoy Onepage" name="author"/>
+<link href="https://color-coordinate-converter.enjoy-onepage.com/" rel="canonical"/>
+<!-- Open Graph (SNS/카카오톡/페이스북/슬랙 등 공유용) -->
+<meta content="website" property="og:type"/>
+<meta content="https://color-coordinate-converter.enjoy-onepage.com" property="og:url"/>
+<meta content="색좌표 변환기 | Color Coordinate Converter" property="og:title"/>
+<meta content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원." property="og:description"/>
+<meta content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png" property="og:image"/>
+<meta content="색좌표 변환기" property="og:site_name"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="색좌표 변환기 | Color Coordinate Converter" name="twitter:title"/>
+<meta content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원." name="twitter:description"/>
+<meta content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png" name="twitter:image"/>
+<meta content="https://color-coordinate-converter.enjoy-onepage.com" name="twitter:url"/>
+<!-- Favicon & App Icons -->
+<link href="images/icon.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="images/icon.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="images/icon.png" rel="shortcut icon"/>
+<link href="images/icon.png" rel="apple-touch-icon"/>
+<!-- manifest (PWA 지원 시) -->
+<!-- <link rel="manifest" href="manifest.json"> -->
+<!-- 기타 SEO 개선 -->
+<meta content="index, follow" name="robots"/>
+<meta content="#1976d2" name="theme-color"/>
+<meta content="#1976d2" name="msapplication-TileColor"/>
+<meta content="images/icon.png" name="msapplication-TileImage"/>
+<style>
     :root {
       --main-blue: #1976d2;
       --main-blue-dark: #1565c0;
@@ -346,204 +339,171 @@
       }
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-  <link rel="alternate" type="application/rss+xml" title="색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV RSS Feed" href="https://color-coordinate-converter.enjoy-onepage.com/rss.xml" />
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://color-coordinate-converter.enjoy-onepage.com/sitemap.xml" />
-</head>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
+<link href="https://color-coordinate-converter.enjoy-onepage.com/rss.xml" rel="alternate" title="색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV RSS Feed" type="application/rss+xml">
+<link href="https://color-coordinate-converter.enjoy-onepage.com/sitemap.xml" rel="sitemap" title="Sitemap" type="application/xml">
+</link></link></head>
 <body>
 
-    <!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
-    <div class="manual-ad-box ad-top-banner" style="width: 100%; max-width: 960px; margin: 8px auto 16px; overflow: hidden; text-align: center; min-height: 50px; max-height: 60px;">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:100%;height:60px;"
-             data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3824727725"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-    
-
-  <button class="lang-switch" id="langBtn" aria-label="언어 전환">ENGLISH</button>
-  <h1 id="mainTitle">색좌표 변환기 <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</span></h1>
-  
-
-  <div style="margin: 0 auto 1.2rem auto; max-width:900px; text-align:center;">
-    <!-- 색변환기 상단 -->
+<!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
+<div class="manual-ad-box ad-top-banner" style="width: 100%; max-width: 960px; margin: 8px auto 16px; overflow: hidden; text-align: center; min-height: 50px; max-height: 60px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:inline-block;width:100%;height:60px;"
          data-ad-client="ca-pub-2228289204702106"
-         data-ad-slot="9680983628"
-         data-ad-format="auto"
+         data-ad-slot="3824727725"
+         data-ad-format="horizontal"
          data-full-width-responsive="true"></ins>
-  </div>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
 
-  <div class="container">
+<button aria-label="언어 전환" class="lang-switch" id="langBtn">ENGLISH</button>
+<h1 id="mainTitle">색좌표 변환기 <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</span></h1>
 
-    <!-- xyY → XYZ -->
-    <div class="card" aria-labelledby="xyy2xyzTitle">
-      <h2 id="xyy2xyzTitle">xyY → XYZ 변환</h2>
-      <div class="tip">예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="x">x (0~1)
-            <span title="CIE 1931 색좌표계 x 값" aria-label="x 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="x" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3127" autocomplete="off" />
-          <div class="input-error-message" id="xError"></div>
-        </div>
-        <div class="input-row">
-          <label for="y">y (0~1)
-            <span title="CIE 1931 색좌표계 y 값" aria-label="y 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="y" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3290" autocomplete="off" />
-          <div class="input-error-message" id="yError"></div>
-        </div>
-        <div class="input-row">
-          <label for="Y">Y (휘도)
-            <span title="상대 휘도(밝기) 값" aria-label="휘도 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Y" inputmode="decimal" step="0.01" min="0" value="100" autocomplete="off" />
-          <div class="input-error-message" id="YError"></div>
-        </div>
-      </div>
-      <button onclick="xyYtoXYZ()" id="xyy2xyzBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">XYZ</span>
-        <div class="output" id="xyzResult"></div>
-        <button class="copy-btn" onclick="copyText('xyzResult')">복사</button>
-      </div>
-      <div class="color-preview" id="colorPreview">
-        <span id="hexLabel1"></span>
-        <span class="color-label" id="colorName1"></span>
-      </div>
-      <div class="color-info" id="colorInfo1"></div>
-    </div>
+<div class="container">
+<!-- xyY → XYZ -->
+<div aria-labelledby="xyy2xyzTitle" class="card">
+<h2 id="xyy2xyzTitle">xyY → XYZ 변환</h2>
+<div class="tip">예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)</div>
+<div class="form-group">
+<div class="input-row">
+<label for="x">x (0~1)
+            <span aria-label="x 값 설명" title="CIE 1931 색좌표계 x 값">ⓘ</span>
+</label>
+<input autocomplete="off" id="x" inputmode="decimal" max="1" min="0" step="0.0001" type="number" value="0.3127"/>
+<div class="input-error-message" id="xError"></div>
+</div>
+<div class="input-row">
+<label for="y">y (0~1)
+            <span aria-label="y 값 설명" title="CIE 1931 색좌표계 y 값">ⓘ</span>
+</label>
+<input autocomplete="off" id="y" inputmode="decimal" max="1" min="0" step="0.0001" type="number" value="0.3290"/>
+<div class="input-error-message" id="yError"></div>
+</div>
+<div class="input-row">
+<label for="Y">Y (휘도)
+            <span aria-label="휘도 설명" title="상대 휘도(밝기) 값">ⓘ</span>
+</label>
+<input autocomplete="off" id="Y" inputmode="decimal" min="0" step="0.01" type="number" value="100"/>
+<div class="input-error-message" id="YError"></div>
+</div>
+</div>
+<button id="xyy2xyzBtn" onclick="xyYtoXYZ()">변환</button>
+<div class="output-row">
+<span class="output-label">XYZ</span>
+<div class="output" id="xyzResult"></div>
+<button class="copy-btn" onclick="copyText('xyzResult')">복사</button>
+</div>
+<div class="color-preview" id="colorPreview">
+<span id="hexLabel1"></span>
+<span class="color-label" id="colorName1"></span>
+</div>
+<div class="color-info" id="colorInfo1"></div>
+</div>
+<!-- XYZ → xyY & Lab & 이름 -->
+<div aria-labelledby="xyz2othersTitle" class="card">
+<h2 id="xyz2othersTitle">XYZ → xyY, Lab, 이름 변환</h2>
+<div class="tip">예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)</div>
+<div class="form-group">
+<div class="input-row">
+<label for="X">X
+            <span aria-label="X 값 설명" title="CIE 1931 XYZ 색좌표계 X">ⓘ</span>
+</label>
+<input autocomplete="off" id="X" inputmode="decimal" min="0" step="0.01" type="number" value="95.047"/>
+<div class="input-error-message" id="XError"></div>
+</div>
+<div class="input-row">
+<label for="Y2">Y
+            <span aria-label="Y 값 설명" title="CIE 1931 XYZ 색좌표계 Y">ⓘ</span>
+</label>
+<input autocomplete="off" id="Y2" inputmode="decimal" min="0" step="0.01" type="number" value="100.000"/>
+<div class="input-error-message" id="Y2Error"></div>
+</div>
+<div class="input-row">
+<label for="Z">Z
+            <span aria-label="Z 값 설명" title="CIE 1931 XYZ 색좌표계 Z">ⓘ</span>
+</label>
+<input autocomplete="off" id="Z" inputmode="decimal" min="0" step="0.01" type="number" value="108.883"/>
+<div class="input-error-message" id="ZError"></div>
+</div>
+</div>
+<button id="xyz2othersBtn" onclick="XYZtoxyY()">변환</button>
+<div class="output-row">
+<span class="output-label">xyY</span>
+<div class="output" id="xyyResult"></div>
+<button class="copy-btn" onclick="copyText('xyyResult')">복사</button>
+</div>
+<div class="output-row">
+<span class="output-label">Lab</span>
+<div class="output" id="labResult"></div>
+<button class="copy-btn" onclick="copyText('labResult')">복사</button>
+</div>
+<div class="output-row">
+<span class="output-label">이름</span>
+<div class="output" id="colorNameResult"></div>
+</div>
+<div class="color-preview" id="colorPreview2">
+<span id="hexLabel2"></span>
+<span class="color-label" id="colorName2"></span>
+</div>
+<div class="color-info" id="colorInfo2"></div>
+<div class="download-btns">
+<button onclick="downloadCSV()" title="변환된 XYZ 값을 CSV 파일로 저장합니다">CSV 다운로드</button>
+<button onclick="downloadCanvas()" title="CIE 색도도 이미지를 PNG로 저장합니다">CIE 색도도 이미지 저장</button>
+</div>
 
-    <!-- XYZ → xyY & Lab & 이름 -->
-    <div class="card" aria-labelledby="xyz2othersTitle">
-      <h2 id="xyz2othersTitle">XYZ → xyY, Lab, 이름 변환</h2>
-      <div class="tip">예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="X">X
-            <span title="CIE 1931 XYZ 색좌표계 X" aria-label="X 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="X" inputmode="decimal" step="0.01" min="0" value="95.047" autocomplete="off" />
-          <div class="input-error-message" id="XError"></div>
-        </div>
-        <div class="input-row">
-          <label for="Y2">Y
-            <span title="CIE 1931 XYZ 색좌표계 Y" aria-label="Y 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Y2" inputmode="decimal" step="0.01" min="0" value="100.000" autocomplete="off" />
-          <div class="input-error-message" id="Y2Error"></div>
-        </div>
-        <div class="input-row">
-          <label for="Z">Z
-            <span title="CIE 1931 XYZ 색좌표계 Z" aria-label="Z 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Z" inputmode="decimal" step="0.01" min="0" value="108.883" autocomplete="off" />
-          <div class="input-error-message" id="ZError"></div>
-        </div>
-      </div>
-      <button onclick="XYZtoxyY()" id="xyz2othersBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">xyY</span>
-        <div class="output" id="xyyResult"></div>
-        <button class="copy-btn" onclick="copyText('xyyResult')">복사</button>
-      </div>
-      <div class="output-row">
-        <span class="output-label">Lab</span>
-        <div class="output" id="labResult"></div>
-        <button class="copy-btn" onclick="copyText('labResult')">복사</button>
-      </div>
-      <div class="output-row">
-        <span class="output-label">이름</span>
-        <div class="output" id="colorNameResult"></div>
-      </div>
-      <div class="color-preview" id="colorPreview2">
-        <span id="hexLabel2"></span>
-        <span class="color-label" id="colorName2"></span>
-      </div>
-      <div class="color-info" id="colorInfo2"></div>
-      <div class="download-btns">
-        <button onclick="downloadCSV()" title="변환된 XYZ 값을 CSV 파일로 저장합니다">CSV 다운로드</button>
-        <button onclick="downloadCanvas()" title="CIE 색도도 이미지를 PNG로 저장합니다">CIE 색도도 이미지 저장</button>
-      </div>
-      <div style="margin: 2rem auto 2rem auto; max-width:900px; text-align:center;">
-        <!- 색변환기 중단 ->
-        <ins class="adsbygoogle"
-          style="display:block;"
-          data-ad-client="ca-pub-2228289204702106"
-          data-ad-slot="3153752650"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      </div>
-    </div>
+</div>
+<!-- Lab → XYZ -->
+<div aria-labelledby="lab2xyzTitle" class="card">
+<h2 id="lab2xyzTitle">Lab → XYZ (역변환)</h2>
+<div class="tip">예시: L=100, a=0, b=0 (D65 백색점)</div>
+<div class="form-group">
+<div class="input-row">
+<label for="L">L (0~100)
+            <span aria-label="L 값 설명" title="Lab 색공간 밝기">ⓘ</span>
+</label>
+<input autocomplete="off" id="L" inputmode="decimal" max="100" min="0" step="0.01" type="number" value="100"/>
+<div class="input-error-message" id="LError"></div>
+</div>
+<div class="input-row">
+<label for="a">a (-128~127)
+            <span aria-label="a 값 설명" title="Lab 색공간 녹-적 축">ⓘ</span>
+</label>
+<input autocomplete="off" id="a" inputmode="decimal" max="127" min="-128" step="0.01" type="number" value="0"/>
+<div class="input-error-message" id="aError"></div>
+</div>
+<div class="input-row">
+<label for="b">b (-128~127)
+            <span aria-label="b 값 설명" title="Lab 색공간 청-황 축">ⓘ</span>
+</label>
+<input autocomplete="off" id="b" inputmode="decimal" max="127" min="-128" step="0.01" type="number" value="0"/>
+<div class="input-error-message" id="bError"></div>
+</div>
+</div>
+<button id="lab2xyzBtn" onclick="LabtoXYZ()">변환</button>
+<div class="output-row">
+<span class="output-label">XYZ</span>
+<div class="output" id="lab2xyzResult"></div>
+<button class="copy-btn" onclick="copyText('lab2xyzResult')">복사</button>
+</div>
+<div class="color-preview" id="colorPreview3">
+<span id="hexLabel3"></span>
+<span class="color-label" id="colorName3"></span>
+</div>
+<div class="color-info" id="colorInfo3"></div>
 
-    <!-- Lab → XYZ -->
-    <div class="card" aria-labelledby="lab2xyzTitle">
-      <h2 id="lab2xyzTitle">Lab → XYZ (역변환)</h2>
-      <div class="tip">예시: L=100, a=0, b=0 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="L">L (0~100)
-            <span title="Lab 색공간 밝기" aria-label="L 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="L" inputmode="decimal" step="0.01" min="0" max="100" value="100" autocomplete="off" />
-          <div class="input-error-message" id="LError"></div>
-        </div>
-        <div class="input-row">
-          <label for="a">a (-128~127)
-            <span title="Lab 색공간 녹-적 축" aria-label="a 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="a" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
-          <div class="input-error-message" id="aError"></div>
-        </div>
-        <div class="input-row">
-          <label for="b">b (-128~127)
-            <span title="Lab 색공간 청-황 축" aria-label="b 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="b" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
-          <div class="input-error-message" id="bError"></div>
-        </div>
-      </div>
-      <button onclick="LabtoXYZ()" id="lab2xyzBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">XYZ</span>
-        <div class="output" id="lab2xyzResult"></div>
-        <button class="copy-btn" onclick="copyText('lab2xyzResult')">복사</button>
-      </div>
-      <div class="color-preview" id="colorPreview3">
-        <span id="hexLabel3"></span>
-        <span class="color-label" id="colorName3"></span>
-      </div>
-      <div class="color-info" id="colorInfo3"></div>
-      <div style="margin: 2.5rem auto 1.5rem auto; max-width:900px; text-align:center;">
-        <!-- 색변환기 하단 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3448146565"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
-    </div>
-
-    <!-- CIE 색도도 -->
-    <div class="card cie-section" aria-labelledby="cieTitle">
-      <h2 id="cieTitle">CIE 1931 색도도 시각화</h2>
-      <div class="cie-canvas-wrap">
-        <canvas id="cieCanvas" width="600" height="450" aria-label="CIE 1931 색도도"></canvas>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast" id="toast"></div>
-
-  <script>
+</div>
+<!-- CIE 색도도 -->
+<div aria-labelledby="cieTitle" class="card cie-section">
+<h2 id="cieTitle">CIE 1931 색도도 시각화</h2>
+<div class="cie-canvas-wrap">
+<canvas aria-label="CIE 1931 색도도" height="450" id="cieCanvas" width="600"></canvas>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
     // 언어 지원
     const LANGS = {
       ko: {
@@ -927,21 +887,16 @@
       });
     };
   </script>
-    
-
-
-    <!-- E-E-A-T 서브페이지 네비게이션 링크 -->
-    <div class="max-w-4xl mx-auto px-4 py-4 mt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500">
-        <a href="/about.html" class="hover:text-blue-600 transition">서비스 소개 &amp; 산출 공식</a>
-        <span class="text-slate-300">&middot;</span>
-        <a href="/privacy.html" class="hover:text-blue-600 transition">개인정보처리방침 (로컬 연산)</a>
-        <span class="text-slate-300">&middot;</span>
-        <a href="/sitemap.xml" class="hover:text-blue-600 transition">사이트맵</a>
-    </div>
-
-
-  <!-- Preemptive UX Helper: Auto comma formatting & Result sharing -->
-  <script>
+<!-- E-E-A-T 서브페이지 네비게이션 링크 -->
+<div class="max-w-4xl mx-auto px-4 py-4 mt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500">
+<a class="hover:text-blue-600 transition" href="/about.html">서비스 소개 &amp; 산출 공식</a>
+<span class="text-slate-300">·</span>
+<a class="hover:text-blue-600 transition" href="/privacy.html">개인정보처리방침 (로컬 연산)</a>
+<span class="text-slate-300">·</span>
+<a class="hover:text-blue-600 transition" href="/sitemap.xml">사이트맵</a>
+</div>
+<!-- Preemptive UX Helper: Auto comma formatting & Result sharing -->
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // Auto comma on number/text inputs with currency hints
       const moneyInputs = document.querySelectorAll('input[type="text"], input[type="number"], input[inputmode="numeric"]');
@@ -993,21 +948,10 @@
       }
     });
   </script>
+<!-- 하단 대형 배너 (푸터 직전) -->
 
-    <!-- 하단 대형 배너 (푸터 직전) -->
-    <div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; overflow: hidden; text-align: center;">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3416334507"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-  <!-- Global UX Helper: Universal Result Copy & Toast -->
-  <script>
+<!-- Global UX Helper: Universal Result Copy & Toast -->
+<script>
     window.showToastNotification = function(msg) {
       let toast = document.getElementById('global-ux-toast');
       if (!toast) {
@@ -1058,6 +1002,17 @@
       document.body.removeChild(ta);
     }
   </script>
+<!-- 하단 대형 배너 (푸터 직전) -->
+<div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; overflow: hidden; text-align: center;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3416334507"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 </body>
 </html>
