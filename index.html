@@ -3,21 +3,57 @@
 <html lang="ko">
 <head>
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV",
-    "description": "색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.",
-    "url": "https://color-coordinate-converter.enjoy-onepage.com/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "KRW"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://color-coordinate-converter.enjoy-onepage.com/#webapp",
+      "name": "색좌표 변환기 xyY, XYZ, Lab + HSL, HSV + 이름 + 복사",
+      "url": "https://color-coordinate-converter.enjoy-onepage.com/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.",
+      "image": "https://color-coordinate-converter.enjoy-onepage.com/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://color-coordinate-converter.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "sRGB 색역을 벗어난 외곽 좌표(Gamut Clipping)는 어떻게 처리되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "디스플레이가 표현할 수 없는 물리적 가시광선 외곽 색상은 가장 가까운 유효 sRGB 경계선으로 클리핑(Clamp 0~255)되어 미리보기에 투영됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Lab 색공간에서 ΔE(색차)는 무엇을 의미하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Delta E는 두 색상 간의 지각적 차이를 수치화한 것으로, 1.0 이하는 육안 구별 불가, 2.0 이상이면 사람이 차이를 인지할 수 있는 수준입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "디스플레이 교정(캘리브레이션)용으로 사용할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, D65 화이트포인트(x=0.3127, y=0.3290) 기반 공식 매트릭스를 준수하여 모니터 캘리브레이션 및 그래픽 작업에 이상적입니다."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
