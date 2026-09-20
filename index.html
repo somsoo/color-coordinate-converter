@@ -135,7 +135,7 @@
       margin-bottom: 8px;
     }
     .container {
-      max-width: 900px;
+      max-width: 1152px;
       margin: auto;
       display: flex;
       flex-direction: column;
@@ -444,9 +444,9 @@
 <div style="text-align: center; margin-bottom: 20px;">
 <button aria-label="언어 전환" class="lang-switch whitespace-nowrap" id="langBtn">ENGLISH</button>
 </div>
-<div class="container">
+<div class="container grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto px-4">
 <!-- xyY → XYZ -->
-<div aria-labelledby="xyy2xyzTitle" class="card">
+<div aria-labelledby="xyy2xyzTitle" class="card lg:col-span-6 w-full">
 <h2 id="xyy2xyzTitle">xyY → XYZ 변환</h2>
 <div class="tip">예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)</div>
 <div class="form-group">
@@ -472,7 +472,7 @@
 <div class="input-error-message" id="YError"></div>
 </div>
 </div>
-<button id="xyy2xyzBtn" onclick="xyYtoXYZ()">변환</button>
+<button id="xyy2xyzBtn" onclick="xyYtoXYZ()" class="w-full py-3 min-h-[44px]">변환</button>
 <div class="output-row">
 <span class="output-label">XYZ</span>
 <div class="output" id="xyzResult"></div>
@@ -485,7 +485,7 @@
 <div class="color-info" id="colorInfo1"></div>
 </div>
 <!-- XYZ → xyY & Lab & 이름 -->
-<div aria-labelledby="xyz2othersTitle" class="card">
+<div aria-labelledby="xyz2othersTitle" class="card lg:col-span-6 lg:sticky lg:top-8 w-full">
 <h2 id="xyz2othersTitle">XYZ → xyY, Lab, 이름 변환</h2>
 <div class="tip">예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)</div>
 <div class="form-group">
@@ -511,7 +511,7 @@
 <div class="input-error-message" id="ZError"></div>
 </div>
 </div>
-<button id="xyz2othersBtn" onclick="XYZtoxyY()">변환</button>
+<button id="xyz2othersBtn" onclick="XYZtoxyY()" class="w-full py-3 min-h-[44px]">변환</button>
 <div class="output-row">
 <span class="output-label">xyY</span>
 <div class="output" id="xyyResult"></div>
