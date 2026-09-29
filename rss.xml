@@ -29,13 +29,6 @@
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
     <item>
-      <title>CIE 1931 색도도와 색좌표(x, y)의 과학적 원리 | 색좌표 변환기 (xyY · Lab · RGB)</title>
-      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/cie-color-space-guide.html</link>
-      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/cie-color-space-guide.html</guid>
-      <description>인간의 시각 세포 반응을 기반으로 정의된 삼자극치 XYZ와 색도 좌표의 수학적 배경을 해설합니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:00:00 +0900</pubDate>
-    </item>
-    <item>
       <title>HEX(#RRGGBB), RGB, HSL 색상 코드 변환 원리와 웹 퍼블리싱 실무 | 색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
       <link>https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</link>
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</guid>
@@ -48,13 +41,6 @@
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide2.html</guid>
       <description>시각 장애인 및 저시력자를 위한 텍스트와 배경색 간의 최소 명도 대비 기준과 가독성 테스트입니다.</description>
       <pubDate>Sat, 12 Sep 2026 02:30:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>sRGB와 CIELAB의 차이점 및 산업별 활용 사례 | 색좌표 변환기 (xyY · Lab · RGB)</title>
-      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/srgb-vs-cielab-difference.html</link>
-      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/srgb-vs-cielab-difference.html</guid>
-      <description>기기 종속적인 RGB 색공간과 기기 독립적인 균등 색공간 Lab의 변환 필요성을 알아봅니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:45:00 +0900</pubDate>
     </item>
   </channel>
 </rss>
