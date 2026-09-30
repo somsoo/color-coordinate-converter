@@ -3,29 +3,36 @@
   <channel>
     <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
     <link>https://color-coordinate-converter.enjoy-onepage.com/</link>
-    <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV 실시간 온라인 도구 및 팩트 기반 전문 칼럼 피드</description>
+    <description>색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.</description>
     <language>ko-KR</language>
-    <lastBuildDate>Sat, 12 Sep 2026 03:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 03:12:25 +0900</lastBuildDate>
     <atom:link href="https://color-coordinate-converter.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
       <link>https://color-coordinate-converter.enjoy-onepage.com/</link>
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/</guid>
-      <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV 실시간 온라인 무료 도구 및 시뮬레이터</description>
+      <description>색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.</description>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV 서비스 소개 및 산출 공식 안내</title>
+      <title>이용약관 - 색좌표 변환기</title>
+      <link>https://color-coordinate-converter.enjoy-onepage.com/terms.html</link>
+      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/terms.html</guid>
+      <description>이용약관 - 색좌표 변환기</description>
+      <pubDate>Thu, 01 Oct 2026 03:12:25 +0900</pubDate>
+    </item>
+    <item>
+      <title>서비스 소개 및 산출 기준 | 색좌표 변환기 (xyY · Lab · RGB)</title>
       <link>https://color-coordinate-converter.enjoy-onepage.com/about.html</link>
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/about.html</guid>
-      <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV의 데이터 처리 원칙, 공식 산출 로직 및 검증 기준입니다.</description>
+      <description>CIE xyY, CIELAB, XYZ, RGB, HEX 실시간 색상 좌표 변환기</description>
       <pubDate>Sat, 12 Sep 2026 01:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV 개인정보처리방침</title>
+      <title>개인정보처리방침 | 색좌표 변환기 (xyY · Lab · RGB)</title>
       <link>https://color-coordinate-converter.enjoy-onepage.com/privacy.html</link>
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/privacy.html</guid>
-      <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV의 개인정보 보호 및 100% 브라우저 메모리 로컬 연산 보안 정책입니다.</description>
+      <description>색좌표 변환기 (xyY · Lab · RGB)의 개인정보 처리방침 및 데이터 로컬 연산 원칙 안내</description>
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
   </channel>
