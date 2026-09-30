@@ -5,7 +5,7 @@
     <link>https://color-coordinate-converter.enjoy-onepage.com/</link>
     <description>색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환.</description>
     <language>ko-KR</language>
-    <lastBuildDate>Thu, 01 Oct 2026 03:12:25 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 03:39:35 +0900</lastBuildDate>
     <atom:link href="https://color-coordinate-converter.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
@@ -20,13 +20,6 @@
       <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/terms.html</guid>
       <description>이용약관 - 색좌표 변환기</description>
       <pubDate>Thu, 01 Oct 2026 03:12:25 +0900</pubDate>
-    </item>
-    <item>
-      <title>서비스 소개 및 산출 기준 | 색좌표 변환기 (xyY · Lab · RGB)</title>
-      <link>https://color-coordinate-converter.enjoy-onepage.com/about.html</link>
-      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/about.html</guid>
-      <description>CIE xyY, CIELAB, XYZ, RGB, HEX 실시간 색상 좌표 변환기</description>
-      <pubDate>Sat, 12 Sep 2026 01:00:00 +0900</pubDate>
     </item>
     <item>
       <title>개인정보처리방침 | 색좌표 변환기 (xyY · Lab · RGB)</title>
