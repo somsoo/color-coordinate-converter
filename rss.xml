@@ -28,19 +28,5 @@
       <description>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV의 개인정보 보호 및 100% 브라우저 메모리 로컬 연산 보안 정책입니다.</description>
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
-    <item>
-      <title>HEX(#RRGGBB), RGB, HSL 색상 코드 변환 원리와 웹 퍼블리싱 실무 | 색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
-      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</link>
-      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide1.html</guid>
-      <description>16진수 HEX 코드와 0~255 RGB, 그리고 인간 직관적인 색조·채도·명도 HSL 모델 상호 변환법입니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:15:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>웹 접근성(WCAG 2.1) 대비율(Contrast Ratio) 4.5:1 검증과 가독성 최적화 | 색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
-      <link>https://color-coordinate-converter.enjoy-onepage.com/guides/guide2.html</link>
-      <guid isPermaLink="true">https://color-coordinate-converter.enjoy-onepage.com/guides/guide2.html</guid>
-      <description>시각 장애인 및 저시력자를 위한 텍스트와 배경색 간의 최소 명도 대비 기준과 가독성 테스트입니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:30:00 +0900</pubDate>
-    </item>
   </channel>
 </rss>
