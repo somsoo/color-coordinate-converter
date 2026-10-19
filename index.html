@@ -63,7 +63,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>색좌표 변환기</title>
 <!-- SEO 기본 메타태그 -->
-<meta content="색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환." name="description"/>
+<meta content="CIE xyY, XYZ, Lab, HSL, HSV 색상 좌표계를 상호 변환하고 실시간 색도도를 확인하세요." name="description"/>
 <meta content="색좌표 변환, color converter, xyY, XYZ, Lab, HSL, HSV, 색상 변환, 색상 이름, CIE, 색도도, 색상 도구, color tool" name="keywords"/>
 <meta content="Enjoy Onepage" name="author"/>
 <link href="https://color-coordinate-converter.enjoy-onepage.com/" rel="canonical"/>
@@ -349,7 +349,7 @@
       z-index: 1000;
       box-shadow: 0 2px 12px rgba(25, 118, 210, 0.13);
       opacity: 0;
-      pointer-events: ;
+      pointer-events: none;
       transition: opacity 0.3s;
     }
     .toast.toast-show {
@@ -715,16 +715,17 @@
       ok &= checkInput('y', 0, 1);
       ok &= checkInput('Y', 0, 1e6);
       if (!ok) return;
-      const x = parseFloat(document.getElementById('x').value);
-      const y = parseFloat(document.getElementById('y').value);
-      const Y = parseFloat(document.getElementById('Y').value);
-      if (y === 0) {
+      const x = Math.min(1, Math.max(0, parseFloat(document.getElementById('x').value) || 0));
+      const y = Math.min(1, Math.max(0, parseFloat(document.getElementById('y').value) || 0));
+      const Y = Math.max(0, parseFloat(document.getElementById('Y').value) || 0);
+      if (y <= 0) {
         showError('yError', LANGS[currentLang].error_y0);
         return;
       }
-      const X = (x * Y) / y;
-      const Z = ((1 - x - y) * Y) / y;
-      document.getElementById('xyzResult').innerText = `X: ${X.toFixed(4)}, Y: ${Y.toFixed(4)}, Z: ${Z.toFixed(4)}`;
+      const denom = Math.max(0.000001, y);
+      const X = (x * Y) / denom;
+      const Z = (Math.max(0, 1 - x - y) * Y) / denom;
+      document.getElementById('xyzResult').textContent = `X: ${X.toFixed(4)}, Y: ${Y.toFixed(4)}, Z: ${Z.toFixed(4)}`;
       showColorPreview(X, Y, Z, 'colorPreview', 'colorInfo1', 'hexLabel1', 'colorName1');
       lastXYZ = { X, Y, Z };
       lastxy = { x, y };
@@ -742,22 +743,23 @@
       ok &= checkInput('Y2', 0, 1e6);
       ok &= checkInput('Z', 0, 1e6);
       if (!ok) return;
-      const X = parseFloat(document.getElementById('X').value);
-      const Y = parseFloat(document.getElementById('Y2').value);
-      const Z = parseFloat(document.getElementById('Z').value);
+      const X = Math.max(0, parseFloat(document.getElementById('X').value) || 0);
+      const Y = Math.max(0, parseFloat(document.getElementById('Y2').value) || 0);
+      const Z = Math.max(0, parseFloat(document.getElementById('Z').value) || 0);
       const total = X + Y + Z;
-      if (total === 0) {
+      if (total <= 0) {
         showError('XError', LANGS[currentLang].error_xyz0);
         return;
       }
-      const x = X / total;
-      const y = Y / total;
-      document.getElementById('xyyResult').innerText = `x: ${x.toFixed(4)}, y: ${y.toFixed(4)}, Y: ${Y.toFixed(4)}`;
+      const denom = Math.max(0.000001, total);
+      const x = X / denom;
+      const y = Y / denom;
+      document.getElementById('xyyResult').textContent = `x: ${x.toFixed(4)}, y: ${y.toFixed(4)}, Y: ${Y.toFixed(4)}`;
       const lab = XYZtoLab(X, Y, Z);
-      document.getElementById('labResult').innerText = `L: ${lab.L.toFixed(2)}, a: ${lab.a.toFixed(2)}, b: ${lab.b.toFixed(2)}`;
+      document.getElementById('labResult').textContent = `L: ${lab.L.toFixed(2)}, a: ${lab.a.toFixed(2)}, b: ${lab.b.toFixed(2)}`;
       showColorPreview(X, Y, Z, 'colorPreview2', 'colorInfo2', 'hexLabel2', 'colorName2');
       const name = getNearestColorName(...xyzToSRGB(X, Y, Z));
-      document.getElementById('colorNameResult').innerText = `${LANGS[currentLang].nearest}: ${name}`;
+      document.getElementById('colorNameResult').textContent = `${LANGS[currentLang].nearest}: ${name}`;
       lastXYZ = { X, Y, Z };
       lastxy = { x, y };
       drawCIE1931();
@@ -769,9 +771,9 @@
       ok &= checkInput('a', -128, 127);
       ok &= checkInput('b', -128, 127);
       if (!ok) return;
-      const L = parseFloat(document.getElementById('L').value);
-      const a = parseFloat(document.getElementById('a').value);
-      const b = parseFloat(document.getElementById('b').value);
+      const L = Math.min(100, Math.max(0, parseFloat(document.getElementById('L').value) || 0));
+      const a = Math.min(127, Math.max(-128, parseFloat(document.getElementById('a').value) || 0));
+      const b = Math.min(127, Math.max(-128, parseFloat(document.getElementById('b').value) || 0));
       const ref_X = 95.047, ref_Y = 100.000, ref_Z = 108.883;
       let y = (L + 16) / 116;
       let x = a / 500 + y;
@@ -781,7 +783,7 @@
       x = inverseCube(x) * ref_X;
       y = inverseCube(y) * ref_Y;
       z = inverseCube(z) * ref_Z;
-      document.getElementById('lab2xyzResult').innerText = `X: ${x.toFixed(4)}, Y: ${y.toFixed(4)}, Z: ${z.toFixed(4)}`;
+      document.getElementById('lab2xyzResult').textContent = `X: ${x.toFixed(4)}, Y: ${y.toFixed(4)}, Z: ${z.toFixed(4)}`;
       showColorPreview(x, y, z, 'colorPreview3', 'colorInfo3', 'hexLabel3', 'colorName3');
       lastXYZ = { X: x, Y: y, Z: z };
       lastxy = xyzToxy(x, y, z);
@@ -872,7 +874,7 @@
     // xy 계산 (XYZ → xy)
     function xyzToxy(X, Y, Z) {
       const sum = X + Y + Z;
-      return sum === 0 ? {x: 0, y: 0} : { x: X / sum, y: Y / sum };
+      return sum <= 0 ? {x: 0, y: 0} : { x: X / sum, y: Y / sum };
     }
     // CSV 다운로드
     function downloadCSV() {
@@ -899,7 +901,8 @@
     }
     // 복사 함수
     function copyText(id) {
-      const text = document.getElementById(id).innerText;
+      const el = document.getElementById(id);
+      const text = el ? (el.textContent || '').trim() : '';
       navigator.clipboard.writeText(text).then(() => {
         showToast(LANGS[currentLang].copySuccess);
       }).catch(() => {
@@ -962,13 +965,26 @@
     // 상태 저장
     let lastXYZ = { X: 95.047, Y: 100.000, Z: 108.883 };
     let lastxy = { x: 0.3127, y: 0.3290 };
-    // 실시간 입력 이벤트 바인딩
-    ['x','y','Y','X','Y2','Z','L','a','b'].forEach(id => {
+    // 실시간 입력 및 연산 이벤트 바인딩
+    ['x','y','Y'].forEach(id => {
       document.getElementById(id).addEventListener('input', function() {
-        checkInput(id,
-          id==='x'||id==='y'?0:id==='L'?0:id==='a'||id==='b'?-128:0,
-          id==='x'||id==='y'?1:id==='L'?100:id==='a'||id==='b'?127:1e6
-        );
+        if (checkInput('x', 0, 1, false) && checkInput('y', 0, 1, false) && checkInput('Y', 0, 1e6, false)) {
+          xyYtoXYZ();
+        }
+      });
+    });
+    ['X','Y2','Z'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        if (checkInput('X', 0, 1e6, false) && checkInput('Y2', 0, 1e6, false) && checkInput('Z', 0, 1e6, false)) {
+          XYZtoxyY();
+        }
+      });
+    });
+    ['L','a','b'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        if (checkInput('L', 0, 100, false) && checkInput('a', -128, 127, false) && checkInput('b', -128, 127, false)) {
+          LabtoXYZ();
+        }
       });
     });
     // 언어 초기화
