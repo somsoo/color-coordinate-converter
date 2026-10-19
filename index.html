@@ -61,7 +61,7 @@
   </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV</title>
+<title>색좌표 변환기</title>
 <!-- SEO 기본 메타태그 -->
 <meta content="색좌표 변환기 (xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환." name="description"/>
 <meta content="색좌표 변환, color converter, xyY, XYZ, Lab, HSL, HSV, 색상 변환, 색상 이름, CIE, 색도도, 색상 도구, color tool" name="keywords"/>
@@ -429,6 +429,25 @@
       min-height: 42px;
     }
   }
+</style>
+<script id="math-guard">
+// Global Math & DOM Output Guard: prevents NaN / Infinity leaks to UI
+(function() {
+  const origToLocaleString = Number.prototype.toLocaleString;
+  Number.prototype.toLocaleString = function(locales, options) {
+    if (!Number.isFinite(this.valueOf())) return '0';
+    return origToLocaleString.call(this, locales, options);
+  };
+  const origToFixed = Number.prototype.toFixed;
+  Number.prototype.toFixed = function(digits) {
+    if (!Number.isFinite(this.valueOf())) return '0';
+    return origToFixed.call(this, digits);
+  };
+})();
+</script>
+<style id="ad-cls-shield">
+  .ad-bottom { min-height: 280px !important; }
+  .ad-bottom ins { min-height: 280px !important; }
 </style>
 </head>
 <body>
@@ -1170,9 +1189,9 @@
 </section>
 
 
-<div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; text-align: center;"&gt;
+<div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; text-align: center;min-height:280px;"&gt;
     <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
-<ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="auto" data-ad-slot="3416334507" data-full-width-responsive="true" style="display:block"></ins>
+<ins class="adsbygoogle" data-ad-client="ca-pub-2228289204702106" data-ad-format="auto" data-ad-slot="3416334507" data-full-width-responsive="true" style="display:block;min-height:280px;"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
@@ -1213,7 +1232,14 @@
     
 
 
-    <!-- E-E-A-T FAQ Section (16-5 헌법 준수) -->
+    <!-- ADSENSE START: mid -->
+<div class="ad-box ad-mid" style="max-width:1080px;margin:16px auto;padding:0 14px;text-align:center;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: mid -->
+
+<!-- E-E-A-T FAQ Section (16-5 헌법 준수) -->
     <section class="mt-8 mb-8 space-y-3">
       <h2 class="text-xl font-bold text-gray-900 mb-4">자주 묻는 질문 (FAQ)</h2>
       <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
